@@ -7,7 +7,7 @@ NewsScreen.propTypes = {
 
 function Random(){
     var index = Math.trunc(Math.random()*16);
-    var path = "Images/news-"+ index + ".png";
+    var path = "news/news-"+ index + ".png";
     return path;
 }
 function NewsScreen(props) {
