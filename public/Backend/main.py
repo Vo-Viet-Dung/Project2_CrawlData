@@ -35,18 +35,24 @@ def crawNewsData(baseUrl, url):
     links = [link.find('a').attrs["href"] for link in titles]
     data = []
     for link in links:
-        news = requests.get(baseUrl + link)
-        soup = BeautifulSoup(news.content, "html.parser")
-        title = soup.find("h1", class_="article-title").text
-        abstract = soup.find("h2", class_="sapo").text
-        body = soup.find("div", id="main-detail-body")
-        content = ""
+        try:
+            news = requests.get(baseUrl + link)
+            soup = BeautifulSoup(news.content, "html.parser")
+            title = soup.find("h1", class_="article-title").text
+            abstract = soup.find("h2", class_="sapo").text
+            body = soup.find("div", id="main-detail-body")
+            content = ""
+        except:
+            print(Exception)
         try:
             content = body.findChildren("p", recursive=False)[
                 0].text + body.findChildren("p", recursive=False)[1].text
         except:
             content = ""
-        image = body.find("img").attrs["src"]
+        try:
+            image = body.find("img").attrs["src"]
+        except:
+            print(Exception)
         data.append({
             "title": title,
             "abstract": abstract,
