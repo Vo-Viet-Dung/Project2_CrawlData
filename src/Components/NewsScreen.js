@@ -16,12 +16,12 @@ function NewsScreen({data}) {
   
     return (
         <div>
-        <div className="card" style={{width: '43rem'}}>
+        <div className="card" style={{width: '637px', height: '850px'}}>
           <div className="card-body">
             <h5 className="card-title"> {data.title} </h5>
             <h6 className="card-subtitle mb-2 text-muted">{data.abstract}</h6>
             
-            <div style = {{backgroundImage: `url(${data.image})`, backgroundSize : 'cover', width: '100%', height: '500px', backgroundRepeat: 'none' }}>
+            <div style = {{backgroundImage: `url(${data.image})`, backgroundSize : 'cover', width: '100%', height: '400px', backgroundRepeat: 'none' }}>
             </div>
             {/* <img src = {data.image} alt = " " /> <br></br> */}
             <p className="card-text">

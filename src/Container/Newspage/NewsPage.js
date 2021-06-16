@@ -22,9 +22,15 @@ function NewsPage(props) {
     }, [])
     return (
         <div className = "news_screen">
-            {data.map((item, index) => (
-                <NewsScreen data={item} key={index} />
-            ))}
+           
+              <Row>
+              {data.map((item, index) => (
+                    <NewsScreen data={item} key={index} />
+                ))}
+              </Row>           
+                
+                
+            
         </div>
     )
 }

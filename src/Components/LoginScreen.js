@@ -1,12 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import PropTypes from 'prop-types';
+import axios from "axios"
 import { Container } from "react-bootstrap";
 LoginScreen.propTypes = {
     
 };
 
 function LoginScreen(props) {
+    const [user, setUser] = useState({email: "", password: ""});
+    const submitHandle = e => {
+          e.preventDefault();
+          const response = axios.post(
+            "http://localhost:5000/login",
+            {
+                email: user.email,
+                password: user.password,
+            },
+            { "Content-Type": "application/json" }
+        );
+        console.log("response",response);
+        if(response.data.messange === true){
+          alert("Login successful");
+          localStorage.setItem("user", response.data.token);
+          localStorage.setItem("name", response.data.user.fullName);
+        }else if (response.data.message === false) {
+          console.log("error");
+          this.setState({ err: response.data.err });
+      }
+
+    }
     return (
+      <form onSubmit = {submitHandle}>
         <div className = "Title">
             <div className="col-md-6 m-auto">
               <form>
@@ -27,13 +51,15 @@ function LoginScreen(props) {
                     Remember me
                   </label>
                 </div>
-                <button type="submit" className="btn btn-primary float-right">
+                <button type="submit" className="btn btn-primary float-right" >
                   Login
                 </button>
               </form>
             </div>
         </div>
+      </form>  
     );
 }
+
 
 export default LoginScreen;

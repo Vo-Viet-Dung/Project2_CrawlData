@@ -10,6 +10,11 @@ import NewsPage from './Container/Newspage/NewsPage';
 import LoginScreen from './Components/LoginScreen';
 import LawPage from './Container/Lawpage/LawPage';
 import BusinessPage from './Container/Business/BusinessPage';
+import CarPage from './Container/Car/CarPage';
+import TechPage from './Container/Tech/TechPage';
+import EduPage from './Container/Edu/EduPage';
+import SciencePage from './Container/Science/SciencePage';
+import EntertainmentPage from './Container/Entertainment/EntertainmentPage';
 function App() {
   return (
     <div >
@@ -25,6 +30,12 @@ function App() {
                   <Route path = "/login" component = {LoginScreen}/>
                   <Route path = "/laws" component = {LawPage}/>
                   <Route path = "/business" component = {BusinessPage}/>
+                  <Route path = "/car" component = {CarPage}/>
+                  <Route path = "/tech" component = {TechPage}/>
+                  <Route path = "/edu" component = {EduPage}/>
+                  <Route path = "/science" component = {SciencePage}/>
+                  <Route path = "/entertainment" component = {EntertainmentPage}/>
+
                 </Switch>
                 
           {/* </BrowserRouter></div> */}

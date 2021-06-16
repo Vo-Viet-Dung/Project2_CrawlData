@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import NewsScreen from '../../Components/NewsScreen';
+import { Row } from 'react-bootstrap';
 BusinessPage.propTypes = {
     
 };
@@ -20,9 +21,12 @@ function BusinessPage(props) {
     }, [])
     return (
         <div>
+            <Row>
             {data.map((item, index) => (
                 <NewsScreen data={item} key={index} />
             ))}
+            </Row>
+            
         </div>
     );
 }

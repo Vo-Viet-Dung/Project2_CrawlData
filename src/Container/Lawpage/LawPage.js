@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import NewsScreen from '../../Components/NewsScreen';
+import { Col, Container, Row } from 'react-bootstrap';
 LawPage.propTypes = {
     
 };
@@ -20,9 +21,12 @@ function LawPage(props) {
     }, [])
     return (
         <div>
+            <Row>
             {data.map((item, index) => (
                 <NewsScreen data={item} key={index} />
             ))}
+            </Row>
+            
         </div>
     );
 }

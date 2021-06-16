@@ -24,21 +24,30 @@ function NavBar(props) {
             <Nav.Link href = "/laws">
               Pháp Luật
             </Nav.Link>
+            <Nav.Link href = "/edu">
+                Giáo dục
+            </Nav.Link>
             <Nav.Link href = "/business">
                 Tài Chính
             </Nav.Link>
-              
-
+            <Nav.Link href = "/car">
+                Xe
+            </Nav.Link>  
+            <Nav.Link href = "/tech">
+                Công Nghệ
+            </Nav.Link>
+            <Nav.Link href = "/science">
+                Khoa Học
+            </Nav.Link>
+            <Nav.Link href = "/entertainment">
+                Giải Trí
+            </Nav.Link>
             </ul>
           <NavItem>
           <a href="/login" className="card-link">
-              Login
+              Đăng Nhập
             </a>
           </NavItem>
-            
-                  <NavLink className="btn btn-outline-info my-2 my-sm-0 ml-3" to="/register">
-                      Register
-                  </NavLink>
                   </div>
                 </nav>
                 
