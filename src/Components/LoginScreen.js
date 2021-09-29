@@ -8,6 +8,7 @@ LoginScreen.propTypes = {
 
 function LoginScreen(props) {
     const [user, setUser] = useState({email: "", password: ""});
+    
     const submitHandle = e => {
           e.preventDefault();
           const response = axios.post(
@@ -19,14 +20,14 @@ function LoginScreen(props) {
             { "Content-Type": "application/json" }
         );
         console.log("response",response);
-        if(response.data.messange === true){
-          alert("Login successful");
-          localStorage.setItem("user", response.data.token);
-          localStorage.setItem("name", response.data.user.fullName);
-        }else if (response.data.message === false) {
-          console.log("error");
-          this.setState({ err: response.data.err });
-      }
+      //   if(response.data.token != null){
+      //     alert("Login successful");
+      //     localStorage.setItem("user", response.data.token);
+      //     localStorage.setItem("name", response.data.user.name);
+      //   }else if (response.data.message === null) {
+      //     console.log("error");
+      //     this.setState({ err: response.data.err });
+      // }
 
     }
     return (
@@ -51,7 +52,7 @@ function LoginScreen(props) {
                     Remember me
                   </label>
                 </div>
-                <button type="submit" className="btn btn-primary float-right" >
+                <button type="submit" className="btn btn-primary float-right" onClick = {submitHandle}>
                   Login
                 </button>
               </form>

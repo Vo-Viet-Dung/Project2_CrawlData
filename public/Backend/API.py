@@ -5,10 +5,11 @@ from bson import ObjectId
 import mongoengine
 import pymongo
 import json
+import requests
 
 app = Flask(__name__)
 try:
-    # db = mongoengine()
+    # Cau hinh ten va duong dan cua database
     app.config['MONGO_DBNAME'] = 'mydatabase'
     app.config['MONGO_URI'] = 'mongodb://localhost:27017/mydatabase'
     app.config['JSON_AS_ASCII'] = False  # cho phep doc chuoi utf8
@@ -17,20 +18,27 @@ except:
     print(Exception)
 
 CORS(app)
-db = mongo.db
+db = mongo.db  # Khoi tao database
+
+# Tạo api với phương thức là GET
 
 
 @app.route("/news", methods=["GET"])
 def get_News():
     try:
-        col = db.news
-        o = []
+        col = db.news  # Collection ứng với bảng tin
+        o = []  # khởi tạo mạng đối tượng dữ liệu
         for i in col.find():
+            # Tiêu đề
             title = i["title"].decode()
+            # Nội dung
             content = i["content"].decode()
+            # Abstract
             abstract = i["abstract"].decode()
+            # Thêm vào mảng đối tượng
             o.append({"_ID": str(ObjectId(
                 i["_id"])), "link": i["link"], "title": str(title), "abstract": str(abstract), "content": str(content), "image": i["image"]})
+            # Tạo cấu trúc json và trả về
             json.dumps(o, ensure_ascii=False).encode('utf8')
         return jsonify(o)
     except:
@@ -181,16 +189,21 @@ def delete_News(id):
 def checkUser():
     try:
         if request.method == "POST":
-            username = request.form.get("username")
-            password = request.form.get("password")
+            username = request.get("username")
+            password = request.get("password")
             if username and password:
                 col = db.admin
                 user = col.find_one(
                     {"username": username, "password": password})
                 if user:
-                    return jsonify({"_ID": str(ObjectId(user["_id"])), "name": user["name"], "username": user["username", "password":user["password"]]})
+                    session = requests.session()
+                    token = session.cookies()
+                    Response.set_cookie = token
+                    return jsonify({"token": token, "name": user["name"], "username": user["username"], "password": user["password"]})
                 else:
                     return jsonify({'message': 'Error'})
+            else:
+                return jsonify({'message': 'please type username and password'})
         if request.method == "GET":
             return "hello"
     except:

@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
-from PIL import Image, ImageDraw, ImageFont
 import requests
+from PIL import Image, ImageDraw, ImageFont
 import pymongo
 
 # Cấu hình kết nối localhost
